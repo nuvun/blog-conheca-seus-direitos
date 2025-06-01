@@ -11,15 +11,15 @@ class ImportVideosFromChannelYouTubeCommand extends Command
     protected $signature = 'import:videos-from-channel-youtube';
 
     protected $description = 'Import videos from channel YouTube';
-
-    const API_KEY = 'AIzaSyAHjZwBwmhy7T_3uYJo5BO0QIRQSc8LsAE';
     const CHANNEL_ID = 'UCsUhBLPHeQ1oYysyn04zkeg';
 
     const MAX_RESULTS = 50;
 
     public function handle(): void
     {
-        $urlApiYouTube = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.self::CHANNEL_ID.'&maxResults='.self::MAX_RESULTS.'&key='.self::API_KEY;
+        $apiKey = config('services.google.api_key_youtube');
+
+        $urlApiYouTube = 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.self::CHANNEL_ID.'&maxResults='.self::MAX_RESULTS.'&key='.$apiKey;
         $listVideos    = json_decode(file_get_contents($urlApiYouTube));
 
         $idsVideosYouTube = array_map(

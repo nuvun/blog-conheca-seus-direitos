@@ -42,4 +42,8 @@ return [
         'secret_key' => env('ILOVEPDF_SECRET_KEY'),
     ],
 
+    'google' => [
+        'api_key_youtube' => env('GOOGLE_API_KEY_YOUTUBE'),
+    ],
+
 ];

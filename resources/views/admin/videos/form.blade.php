@@ -253,7 +253,7 @@
 
         function getDataFromYouTubeApi(youtubeId)
         {
-            const YOUTUBE_API_KEY = "AIzaSyAXvPUcKUaK6BF7SyaXRDDFT3ynG8h_aqs";
+            const YOUTUBE_API_KEY = "{{ config('services.google.api_key_youtube') }}";
             const url = `https://www.googleapis.com/youtube/v3/videos?id=${youtubeId}&part=snippet%2Cstatistics%2CcontentDetails&key=${YOUTUBE_API_KEY}`;
 
             fetch(url)
