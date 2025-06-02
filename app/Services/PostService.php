@@ -16,7 +16,7 @@ class PostService
     {
         return \Cache::rememberForever('lastPosts', function () {
             return $this->model::query()
-                ->select(['id', 'title', 'subtitle', 'slug'])
+                ->select(['id', 'title', 'subtitle'])
                 ->with(['media'])
                 ->active()
                 ->validPeriod()
@@ -48,7 +48,7 @@ class PostService
                 ->where('id', '!=', $postId)
                 ->latest('published_at')
                 ->limit(3)
-                ->get(['id', 'title', 'subtitle', 'slug']);
+                ->get(['id', 'title', 'subtitle']);
         });
     }
 

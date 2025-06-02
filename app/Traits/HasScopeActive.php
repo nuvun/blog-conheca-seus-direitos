@@ -11,7 +11,7 @@ trait HasScopeActive
 
     public function scopeActive(Builder $builder): Builder
     {
-        return $builder->where($this->table . '.status', StatusEnum::ACTIVE->name);
+        return $builder->where($this->table . '.status', StatusEnum::ACTIVE->value);
     }
 
     public function isActive(): Attribute
