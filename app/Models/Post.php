@@ -245,11 +245,4 @@ class Post extends Model implements HasMedia, Viewable
         )->shouldCache();
     }
 
-    public function isActive(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => $this->status === StatusEnum::ACTIVE->name
-        )->shouldCache();
-    }
-
 }

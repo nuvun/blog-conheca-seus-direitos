@@ -15,6 +15,11 @@ enum StatusEnum: string
         ];
     }
 
+    public static function getFromName(string $name): string
+    {
+        return array_values(array_filter(self::getDescriptions(), fn($value) => $value['value'] === $name))[0]['description'] ?? '';
+    }
+
 }
 
 

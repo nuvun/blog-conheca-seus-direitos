@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             TypeBannerSeeder::class,
             StateSeeder::class,
             CitySeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

@@ -56,9 +56,7 @@
                         <tr>
                             <th>{{ trans('cruds.post.fields.image_featured') }}</th>
                             <th>{{ trans('cruds.post.fields.categories') }}</th>
-                            <th>{{ trans('cruds.post.fields.featured_position') }}</th>
                             <th>{{ trans('cruds.post.fields.title') }}</th>
-                            <th>{{ trans('cruds.post.fields.user') }}</th>
                             <th>{{ trans('cruds.post.fields.published_at') }}</th>
                             <th>{{ trans('cruds.post.fields.status') }}</th>
                             <th></th>
@@ -68,23 +66,7 @@
                             <tr>
                                 <td></td>
                                 <td><input type="text" name="filter[category]" value="{{ request('filter.category') }}" placeholder="{{ trans('global.search') }}"></td>
-                                <td>
-                                    <select name="filter[featured_position]"
-                                            class="form-control-sm w-100"
-                                            onchange="this.form.submit()"
-                                    >
-                                        <option value="">Selecione</option>
-                                        @foreach(\App\Enums\FeaturedPositionPostEnum::getDescriptions() as $featuredPosition)
-                                            <option value="{{ $featuredPosition['value'] }}"
-                                                @selected(request('filter.featured_position') == $featuredPosition['value'])
-                                            >
-                                                {{ $featuredPosition['description'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </td>
                                 <td><input type="text" name="filter[title]" value="{{ request('filter.title') }}" placeholder="{{ trans('global.search') }}"></td>
-                                <td><input type="text" name="filter[user]" value="{{ request('filter.user') }}" placeholder="{{ trans('global.search') }}" style="width: 80px;"></td>
                                 <td><input type="date" name="filter[published_at]" value="{{ request('filter.published_at') }}" placeholder="{{ trans('global.search') }}"></td>
                                 <td>
                                     <select name="filter[status]"
@@ -126,41 +108,23 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    {{ $post->featuredPosition ?? ''}}
-                                </td>
-                                <td>
                                     <p>{{ $post->title ?? '' }}</p>
                                     <p>
                                         {{ $post->views_count }} <em>visualizações</em>
                                     </p>
                                     <a href="{{ $post->url }}" target="_blank" title="Ver notícia">
                                         <i class="fa fa-external-link"></i>
-                                        VER NOTÍCIA
+                                        VER POST
                                     </a>
-                                </td>
-                                <td>
-                                    @if(filled($post->attributes->editor))
-                                        <span class="badge badge-info">{{ $post->attributes->editor }}</span>
-                                    @else
-                                        @foreach($post->users as $key => $item)
-                                            <span class="badge badge-info">{{ $item->name }}</span>
-                                        @endforeach
-                                    @endif
                                 </td>
                                 <td>
                                     {{ $post->published_at ? $post->published_at->format('d/m/Y H:i') : '' }}
                                 </td>
                                 <td>
-                                    {{ App\Models\Post::STATUS_RADIO[$post->status] ?? '' }}
+                                    {{ $post->statusFormatted }}
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column align-items-center" style="gap: 4px">
-                                        @can('post_show')
-                                            <a class="btn btn-xs btn-primary" href="{{ route('admin.posts.show', $post->id) }}">
-                                                {{ trans('global.view') }}
-                                            </a>
-                                        @endcan
-
                                         @can('post_edit')
                                             <a class="btn btn-xs btn-info" href="{{ route('admin.posts.edit', $post->id) }}">
                                                 {{ trans('global.edit') }}

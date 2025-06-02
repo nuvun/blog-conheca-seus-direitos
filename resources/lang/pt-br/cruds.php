@@ -202,8 +202,8 @@ return [
         ],
     ],
     'post' => [
-        'title'          => 'Notícias',
-        'title_singular' => 'Notícia',
+        'title'          => 'Posts',
+        'title_singular' => 'Post',
         'fields'         => [
             'id'                       => 'ID',
             'id_helper'                => ' ',
