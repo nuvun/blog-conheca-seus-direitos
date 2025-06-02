@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row pt-3 pb-4">
             <div class="col-md-3">
-                <img src="https://blogzine.webestica.com/assets/images/logo.svg"
+                <img src="{{ asset('assets/img/logo.png') }}"
                      alt="{{ config('app.name') }}"
                      loading="lazy"
                 >

@@ -3,58 +3,61 @@
 @section('title', $title)
 
 @section('content')
-    <div class="blog-section">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-xxl-8 col-xl-8 col-lg-12">
-                    <h1 class="mt-4 fw-bold">
-                        {{ $title }}
-                    </h1>
+    <hr />
 
-                    <hr />
+    <section class="position-relative">
+        <div class="container" data-sticky-container>
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="mb-4">
+                        <h2 class="m-0">
+                            {{ $title }}
+                        </h2>
+                    </div>
 
-                    @forelse($posts as $post)
-                        <div class="news-box d-flex align-items-center">
-                            <div class="me-3 col-lg-4">
-                                <a href="{{ $post->url }}" title="{{ $post->title }}" class="news-img">
-                                    <img src="/resize-image?src={{ $post->featuredImageUrl }}&w=300&h=300&a=t"
-                                         alt="{{ $post->title }}"
-                                         loading="lazy"
-                                         class="rounded"
-                                    />
-                                </a>
+                    <div class="row gy-4">
+                        @foreach($posts as $post)
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="position-relative">
+                                        <img class="card-img"
+                                             src="{{ $post->featuredImageUrl }}"
+                                             alt="{{ $post->title }}"
+                                             loading="lazy"
+                                        />
+
+                                        <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                                            <div class="w-100 mt-auto">
+                                                <a href="{{ $post->url }}" title="Posts sobre {{ $post->category->name }}" class="badge text-bg-info mb-2">
+                                                    <i class="fas fa-circle me-2 small fw-bold"></i>
+                                                    {{ $post->category->name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body px-0 pt-3">
+                                        <h4 class="card-title mt-2">
+                                            <a href="{{ $post->url }}" title="{{ $post->title }}" class="btn-link text-reset fw-bold">
+                                                {{ $post->title }}
+                                            </a>
+                                        </h4>
+
+                                        <p class="card-text">
+                                            {{ $post->subtitle }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
+                        @endforeach
 
-                            <div class="news-info col-lg-8">
-                                <span class="badge bg-brand">
-                                    {{ $post?->category?->name }}
-                                </span>
-
-                                <h3 class="mt-2">
-                                    <a href="{{ $post->url }}" title="{{ $post->title }}" class="text-dark fw-semibold">
-                                        {{ $post->title }}
-                                    </a>
-                                </h3>
-
-                                <i class="fa-regular fa-calendar"></i>
-                                {{ $post->published_at->isoFormat('LL [às] HH:mm') }}
-                            </div>
-                        </div>
-
-                        <hr>
-                    @empty
-                        <div class="alert alert-warning">
-                            Nenhum notícia encontrada.
-                        </div>
-                    @endforelse
-
-                    {{ $posts->links() }}
+                        {{ $posts->links() }}
+                    </div>
                 </div>
 
-                <div class="col-xxl-4 col-xl-4 col-lg-12">
-                    @include('partials.site.sidebar')
-                </div>
+                @include('partials.site.sidebar')
             </div>
         </div>
-    </div>
+    </section>
 @endsection
+

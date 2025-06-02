@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Models\ContentCategory;
 use App\Models\Post;
 use App\Models\User;
+use App\Services\PostService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,9 +15,13 @@ use Illuminate\View\View;
 class PostController
 {
 
+    public function __construct(
+        public PostService $postService,
+    ) { }
+
     public function index(): View
     {
-        $title = 'Últimas Notícias';
+        $title = 'Últimas Postagens';
 
         $posts = Post::query()
             ->with(['media', 'categories'])
@@ -35,31 +40,15 @@ class PostController
 
         views($post)->record();
 
-        $cacheKey = 'post_' . $post->id;
-        $post = Cache::rememberForever($cacheKey, function () use ($post) {
-            return $post->load('categories', 'image', 'media', 'tags', 'users');
-        });
+        $post = $this->postService->getPost($post->id);
 
-        $relatedPosts = Cache::remember($cacheKey . '_related', now()->addMinutes(10), function () use ($post) {
-            return Post::query()
-                ->with(['media', 'categories', 'image'])
-                ->whereHas('categories', function ($query) use ($post) {
-                    $query->whereIn('content_categories.id', $post->categories->pluck('id'));
-                })
-                ->where('id', '!=', $post->id)
-                ->validPeriod()
-                ->latest('published_at')
-                ->limit(3)
-                ->get();
-        });
+        $relatedPosts = $this->postService->getRelatedPosts($post->id);
 
         if (request()->routeIs('site.posts.showAmp')) {
             return view('site.posts.showAmp', compact('post', 'relatedPosts'));
         }
 
-        $view = $post->isInterview ? 'site.posts.showInterview' : 'site.posts.show';
-
-        return view($view, compact('post', 'relatedPosts'));
+        return view('site.posts.show', compact('post', 'relatedPosts'));
     }
 
     public function category(ContentCategory $categoryPost): View
