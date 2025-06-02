@@ -51,7 +51,6 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::controller(\App\Http\Controllers\Site\PagesController::class)->group(function () {
         Route::get('pages/terms-of-use', 'termsOfUse')->name('pages.termsOfUse');
         Route::get('pages/privacy-policy', 'privacyPolicy')->name('pages.privacyPolicy');
-        Route::view('resultado-eleicoes-2024', 'site.pages.resultado-eleicoes-2024')->name('pages.resultado-eleicoes-2024');
     });
 
     Route::controller(\App\Http\Controllers\Site\VideoController::class)->group(function () {
@@ -63,20 +62,13 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     });
 
     Route::controller(\App\Http\Controllers\Site\PostController::class)->group(function () {
-        Route::get('/noticias', 'index')->name('posts.index');
+        Route::get('/posts', 'index')->name('posts.index');
         Route::get('/blogs', 'blogs')->name('posts.blogs');
-        Route::get('/noticias/{slug}/{post:id}', 'show')->name('posts.show');
-        Route::get('/podcasts', 'podcasts')->name('posts.podcasts');
-        Route::get('/podcasts/{slug}/{post:id}', 'showPodcast')->name('posts.showPodcast');
-        Route::get('amp/noticias/{slug}/{post:id}', 'show')->name('posts.showAmp');
-        Route::get('/noticias/{categoryPost:slug}', 'category')->name('posts.category');
-        Route::get('/{slug}', 'migratedFromSlug')->name('posts.migratedFromSlug');
-        Route::get('/{type}/{slug}.html', 'migratedPost')->where('type', '(noticia|blog)')->name('posts.migratedPost');
-        Route::get('/{type}/{slug}', 'migratedPost')->where('type', '(noticia|blog)')->name('posts.migratedPost');
-        Route::get('/{type}/amp/{slug}.html', 'migratedPost')->where('type', '(noticia|blog)')->name('posts.migratedPostAmp');
+        Route::get('/posts/{slug}/{post:id}', 'show')->name('posts.show');
+        Route::get('amp/posts/{slug}/{post:id}', 'show')->name('posts.showAmp');
+        Route::get('/posts/{categoryPost:slug}', 'category')->name('posts.category');
         Route::get('/highlight/{id}', 'migratedHighlight')->name('posts.migratedHighlight');
-        Route::get('/noticia/clique/{post:id}', 'migratedFromLinkClick')->name('posts.migratedFromLinkClick');
-        Route::get('/buscar/noticias', 'search')->name('posts.search');
+        Route::get('/buscar/posts', 'search')->name('posts.search');
         Route::get('/feeds', 'feeds')->name('posts.feeds');
         Route::get('/noticia/autor/{slug}', 'user')->name('posts.user');
     });

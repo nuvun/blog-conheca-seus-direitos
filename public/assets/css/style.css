@@ -15483,11 +15483,11 @@ header .navbar-nav .nav-link.active:before {
 }
 
 .navbar-brand {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 .navbar-brand .navbar-brand-item {
-    height: 30px;
+    height: 100px;
     display: block;
     width: auto;
 }

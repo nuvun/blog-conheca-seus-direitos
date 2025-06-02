@@ -92,53 +92,6 @@ class PostController
 
     }
 
-    public function migratedPost(string $type, string $slug): RedirectResponse
-    {
-        $post = Post::query()
-            ->firstWhere('migration_slug', $slug);
-
-        if (is_null($post)) {
-            $term = str($slug)->replace('-', ' ')->value();
-
-            return to_route('site.posts.search', ['term' => $term]);
-        }
-
-        if(request()->routeIs('site.posts.migratedPostAmp')) {
-            return to_route('site.posts.showAmp', ['slug' => str()->slug($post->title), 'post' => $post->id]);
-        }
-
-        return to_route('site.posts.show', ['slug' => str()->slug($post->title), 'post' => $post->id]);
-    }
-
-    public function migratedHighlight(int $id): RedirectResponse
-    {
-        $post = Post::query()
-            ->findOrFail($id, ['id', 'title']);
-
-        return to_route('site.posts.show', ['slug' => str()->slug($post->title), 'post' => $post->id]);
-    }
-
-    public function migratedFromLinkClick(Post $post): RedirectResponse
-    {
-        return redirect()->to($post->url);
-    }
-
-    public function migratedFromSlug(string $slug): RedirectResponse
-    {
-        $post = Post::query()->firstWhere('migration_slug', $slug);
-
-        if ($post)
-            return to_route('site.posts.show', ['slug' => str()->slug($post->title), 'post' => $post->id]);
-
-        $contentCategory = ContentCategory::query()->firstWhere('slug', $slug);
-
-        if ($contentCategory) {
-            return to_route('site.posts.category', $contentCategory);
-        }
-
-        return to_route('site.posts.index');
-    }
-
     public function search(Request $request): View
     {
         $title = 'Resultados da busca por: "' . request('term'). '"';
@@ -186,22 +139,6 @@ class PostController
 
         return response()->view('site.posts.feeds', compact('posts'))
             ->header('Content-Type', 'application/xml');
-    }
-
-    public function podcasts(): View
-    {
-        $title = 'Podcast Visão 360';
-
-        $posts = Post::query()
-            ->isFromPodcast()
-            ->with(['media', 'categories'])
-            ->validPeriod()
-            ->active()
-            ->latest('published_at')
-            ->simplePaginate()
-            ->withQueryString();
-
-        return view('site.posts.podcasts', compact('title', 'posts'));
     }
 
 }

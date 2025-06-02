@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-    <section class="pt-4 pb-0 card-grid">
+    <section class="py-0 card-grid">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-6">
