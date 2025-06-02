@@ -16,6 +16,7 @@ class PostService
     {
         return \Cache::rememberForever('lastPosts', function () {
             return $this->model::query()
+                ->with('categories:id,name')
                 ->select(['id', 'title', 'subtitle'])
                 ->with(['media'])
                 ->active()
