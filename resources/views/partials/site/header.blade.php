@@ -1,80 +1,67 @@
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu">
-    <div class="offcanvas-header justify-content-end">
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body d-flex flex-column pt-0">
-        <div>
-            <img class="light-mode-item my-3" src="https://blogzine.webestica.com/assets/images/logo.svg" alt="logo">
-            <img class="dark-mode-item my-3" src="https://blogzine.webestica.com/assets/images/logo-light.svg" alt="logo">
-            <p>The next-generation blog, news, and magazine theme for you to start sharing your stories today! </p>
-            <!-- Nav START -->
-            <ul class="nav d-block flex-column my-4">
-                <li class="nav-item h5">
-                    <a class="nav-link" href="index.html">Home</a>
-                <li class="nav-item h5">
-                    <a class="nav-link" href="about-us.html">About</a>
-                </li>
-                <li class="nav-item h5">
-                    <a class="nav-link" href="post-grid.html">Our Journal</a>
-                </li>
-                <li class="nav-item h5">
-                    <a class="nav-link" href="contact-us.html">Contact Us</a>
-                </li>
-            </ul>
-            <!-- Nav END -->
-            <div class="bg-primary bg-opacity-10 p-4 mb-4 text-center w-100 rounded">
-                <span>The Blogzine</span>
-                <h3>Save on Premium Membership</h3>
-                <p>Get the insights report trusted by experts around the globe. Become a Member Today!</p>
-                <a href="#" class="btn btn-warning">View pricing plans</a>
-            </div>
-        </div>
-        <div class="mt-auto pb-3">
-            <!-- Address -->
-            <p class="text-body mb-2 fw-bold">New York, USA (HQ)</p>
-            <address class="mb-0">750 Sing Sing Rd, Horseheads, NY, 14845</address>
-            <p class="mb-2">Call: <a href="#" class="text-body"><u>469-537-2410</u> (Toll-free)</a> </p>
-            <a href="#" class="text-body d-block">hello@blogzine.com</a>
-        </div>
-    </div>
-</div>
-
 <header class="navbar-light navbar-sticky header-static">
     <div class="navbar-top d-none d-lg-block small">
         <div class="container">
             <div class="d-md-flex justify-content-between align-items-center my-2">
-                <!-- Top bar left -->
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link ps-0" href="about-us.html">About</a>
+                        <a class="nav-link ps-0" href="" title="Sobre nós">
+                            Sobre nós
+                        </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://themes.getbootstrap.com/store/webestica/">Buy now!</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signin.html">Login / Join</a>
+                        <a class="nav-link ps-0" href="" title="Fale conosco">
+                            Fale conosco
+                        </a>
                     </li>
                 </ul>
-                <!-- Top bar right -->
+
                 <div class="d-flex align-items-center">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link px-2 fs-5" href="#"><i class="fab fa-facebook-square"></i></a>
+                            <a class="nav-link px-2 fs-5"
+                               href="#"
+                               title=""
+                               target="_blank"
+                            >
+                                <i class="fab fa-square-instagram"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 fs-5" href="#"><i class="fab fa-twitter-square"></i></a>
+                            <a class="nav-link px-2 fs-5"
+                               href="#"
+                               title=""
+                               target="_blank"
+                            >
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 fs-5" href="#"><i class="fab fa-linkedin"></i></a>
+                            <a class="nav-link px-2 fs-5"
+                               href="#"
+                               title=""
+                               target="_blank"
+                            >
+                                <i class="fab fa-twitter-square"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 fs-5" href="#"><i class="fab fa-youtube-square"></i></a>
+                            <a class="nav-link px-2 fs-5"
+                               href="#"
+                               title=""
+                               target="_blank"
+                            >
+                                <i class="fab fa-linkedin"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 pe-0 fs-5" href="#"><i class="fab fa-vimeo"></i></a>
+                            <a class="nav-link px-2 fs-5"
+                               href="#"
+                               title=""
+                               target="_blank"
+                            >
+                                <i class="fab fa-youtube-square"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -83,16 +70,14 @@
             <div class="border-bottom border-2 border-primary opacity-1"></div>
         </div>
     </div>
-    <!-- Logo Nav START -->
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <!-- Logo START -->
-            <a class="navbar-brand" href="index.html">
-                <img class="navbar-brand-item light-mode-item" src="https://blogzine.webestica.com/assets/images/logo.svg" alt="logo">
-                <img class="navbar-brand-item dark-mode-item" src="https://blogzine.webestica.com/assets/images/logo-light.svg" alt="logo">
+            <a class="navbar-brand" href="{{ route('site.home.index') }}" title="{{ config('app.name') }}">
+                <img class="navbar-brand-item light-mode-item" src="https://blogzine.webestica.com/assets/images/logo.svg" alt="{{ config('app.name') }}">
+                <img class="navbar-brand-item dark-mode-item" src="https://blogzine.webestica.com/assets/images/logo-light.svg" alt="{{ config('app.name') }}">
             </a>
-            <!-- Logo END -->
-            <!-- Responsive navbar toggler -->
+
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="text-body h6 d-none d-sm-inline-block">Menu</span>
                 <span class="navbar-toggler-icon"></span>
@@ -112,7 +97,9 @@
             <div class="nav flex-nowrap align-items-center">
                 <!-- Nav Button -->
                 <div class="nav-item d-none d-md-block">
-                    <a href="#" class="btn btn-sm btn-danger mb-0 mx-2">Subscribe!</a>
+                    <a href="#" class="btn btn-sm btn-danger mb-0 mx-2">
+                        Subscribe!
+                    </a>
                 </div>
                 <!-- Nav Search -->
                 <div class="nav-item dropdown dropdown-toggle-icon-none nav-search">

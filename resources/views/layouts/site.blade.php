@@ -27,7 +27,6 @@
 
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" media="print" onload="this.media='all'" />
-        <link rel="stylesheet" href="https://blogzine.webestica.com/assets/vendor/bootstrap-icons/bootstrap-icons.css" media="print" onload="this.media='all'" />
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v={{ date('Ymd') }}">
 
         <style>
@@ -50,8 +49,8 @@
 
         <div class="back-top"><i class="bi bi-arrow-up-short"></i></div>
 
-        <script src="https://blogzine.webestica.com/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://blogzine.webestica.com/assets/vendor/tiny-slider/tiny-slider.js"></script>
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
 
         <script>

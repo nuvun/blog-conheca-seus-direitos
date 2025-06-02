@@ -2,5 +2,5 @@
 
 return [
     'site_name'        => config('app.name'),
-    'site_description' => 'Fique sempre bem informado sobre tudo o que acontece no Piaui, no Brasil e no Mundo.',
+    'site_description' => 'Conhecendo seus direitos é um blog que explica leis e direitos de forma simples e prática, com exemplos do dia a dia. Informação clara para ajudar você a entender e exercer seus direitos com confiança.',
 ];
