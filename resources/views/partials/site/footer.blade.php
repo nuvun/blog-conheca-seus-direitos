@@ -4,6 +4,7 @@
             <div class="col-md-3">
                 <img src="{{ asset('assets/img/logo.png') }}"
                      alt="{{ config('app.name') }}"
+                     class="rounded"
                      loading="lazy"
                 >
             </div>

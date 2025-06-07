@@ -4,14 +4,20 @@
             <div class="d-md-flex justify-content-between align-items-center my-2">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link ps-0" href="" title="Sobre nós">
+                        <a class="nav-link ps-0" href="{{ route('site.pages.about') }}" title="Sobre nós">
                             Sobre nós
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link ps-0" href="" title="Fale conosco">
+                        <a class="nav-link ps-0" href="" title="Fale conosco" target="_blank">
                             Fale conosco
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link ps-0" href="/#newsletter" title="Assine nossa newsletter">
+                            Assine nossa newsletter
                         </a>
                     </li>
                 </ul>

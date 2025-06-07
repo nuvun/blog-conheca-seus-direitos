@@ -7,11 +7,11 @@ use Illuminate\View\View;
 class PagesController
 {
 
-    public function termsOfUse(): View
+    public function about(): View
     {
-        $title = 'Termos de uso';
+        $title = 'Quem somos';
 
-        return view('site.pages.terms-of-use', compact('title'));
+        return view('site.pages.about', compact('title'));
     }
 
     public function privacyPolicy(): View

@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     });
 
     Route::controller(\App\Http\Controllers\Site\PagesController::class)->group(function () {
+        Route::get('pages/about', 'about')->name('pages.about');
         Route::get('pages/terms-of-use', 'termsOfUse')->name('pages.termsOfUse');
         Route::get('pages/privacy-policy', 'privacyPolicy')->name('pages.privacyPolicy');
     });

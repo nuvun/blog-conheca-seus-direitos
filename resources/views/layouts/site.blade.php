@@ -53,10 +53,6 @@
         <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
 
-        <script>
-
-        </script>
-
         @yield('scripts')
 
         @include('partials.cookie-consent')
