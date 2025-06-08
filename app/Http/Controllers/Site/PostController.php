@@ -114,6 +114,22 @@ class PostController
             ->header('Content-Type', 'application/xml');
     }
 
+    public function articles(): View
+    {
+        $title = 'Artigos';
+
+        $posts = Post::query()
+            ->with(['media', 'categories'])
+            ->isFromArticle()
+            ->validPeriod()
+            ->active()
+            ->latest('published_at')
+            ->simplePaginate()
+            ->withQueryString();
+
+        return view('site.posts.index', compact('title', 'posts'));
+    }
+
     public function formArticle(): View
     {
         $title = 'Enviar Artigo';

@@ -238,6 +238,20 @@ class Post extends Model implements HasMedia, Viewable
         )->shouldCache();
     }
 
+    public function scopeIsFromArticle(Builder $builder): Builder
+    {
+        return $builder->whereHas('categories', function ($query) {
+            $query->where('name', 'Artigos');
+        });
+    }
+
+    public function isFromArticle(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->categories->contains('name', 'Artigos')
+        )->shouldCache();
+    }
+
     public function isPublished(): Attribute
     {
         return Attribute::make(
