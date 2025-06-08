@@ -17,5 +17,6 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/tmp
+/storage/media-library
 composer.lock
 /public/cache/
