@@ -68,10 +68,12 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
         Route::get('/posts/{slug}/{post:id}', 'show')->name('posts.show');
         Route::get('amp/posts/{slug}/{post:id}', 'show')->name('posts.showAmp');
         Route::get('/posts/{categoryPost:slug}', 'category')->name('posts.category');
-        Route::get('/highlight/{id}', 'migratedHighlight')->name('posts.migratedHighlight');
         Route::get('/buscar/posts', 'search')->name('posts.search');
         Route::get('/feeds', 'feeds')->name('posts.feeds');
         Route::get('/noticia/autor/{slug}', 'user')->name('posts.user');
+        Route::get('/artigos', 'articles')->name('posts.articles');
+        Route::get('/enviar-artigo', 'formArticle')->name('posts.formArticle');
+        Route::post('/receber-artigo', 'receiveArticle')->name('posts.receiveArticle');
     });
 
     Route::controller(\App\Http\Controllers\Site\GalleryPhotoController::class)->group(function () {
