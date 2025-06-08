@@ -10,14 +10,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link ps-0" href="" title="Fale conosco" target="_blank">
+                        <a class="nav-link ps-0" href="{{ $settings['site.link_whatsapp'] ?? '' }}" title="Fale conosco" target="_blank">
                             Fale conosco
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link ps-0" href="/#newsletter" title="Assine nossa newsletter">
-                            Assine nossa newsletter
+                            Assina nossa newsletter
                         </a>
                     </li>
                 </ul>
@@ -26,7 +26,7 @@
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link px-2 fs-5"
-                               href="#"
+                               href="{{ $settings['site.link_instagram'] ?? '' }}"
                                title=""
                                target="_blank"
                             >
@@ -35,7 +35,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-2 fs-5"
-                               href="#"
+                               href="{{ $settings['site.link_facebook'] ?? '' }}"
                                title=""
                                target="_blank"
                             >
@@ -44,7 +44,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-2 fs-5"
-                               href="#"
+                               href="{{ $settings['site.link_twitter'] ?? '' }}"
                                title=""
                                target="_blank"
                             >
@@ -53,7 +53,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-2 fs-5"
-                               href="#"
+                               href="{{ $settings['site.link_linkedin'] ?? '' }}"
                                title=""
                                target="_blank"
                             >
@@ -62,7 +62,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-2 fs-5"
-                               href="#"
+                               href="{{ $settings['site.link_youtube'] ?? '' }}"
                                title=""
                                target="_blank"
                             >
@@ -80,8 +80,15 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{{ route('site.home.index') }}" title="{{ config('app.name') }}">
-                <img class="navbar-brand-item light-mode-item" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('app.name') }}">
-                <img class="navbar-brand-item dark-mode-item" src="{{ asset('assets/img/logo.png') }}" alt="{{ config('app.name') }}">
+                <img class="navbar-brand-item light-mode-item"
+                     src="{{ asset('assets/img/logo.png') }}"
+                     alt="{{ config('app.name') }}"
+                />
+
+                <img class="navbar-brand-item dark-mode-item"
+                     src="{{ asset('assets/img/logo.png') }}"
+                     alt="{{ config('app.name') }}"
+                />
             </a>
 
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,20 +99,25 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav navbar-nav-scroll mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('site.posts.index') }}" title="Últimas Postagens">
                             Últimas Postagens
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('site.posts.articles') }}" title="Artigos">
                             Artigos
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">
-                            Conheça a nuvun
+                        <a class="nav-link"
+                           href="https://nuvun.online"
+                           title="Conheça a nuvun"
+                           target="_blank"
+                           style="text-transform: initial"
+                        >
+                            Conheça a <b>Nuvun</b>
                         </a>
                     </li>
                 </ul>
@@ -114,11 +126,11 @@
             <div class="nav flex-nowrap align-items-center">
                 <!-- Nav Button -->
                 <div class="nav-item d-none d-md-block">
-                    <a href="/#newsletter" title="Assina nossa newsletter" class="btn btn-sm btn-info mb-0 mx-2">
-                        Assina nossa newsletter
+                    <a href="{{ route('site.posts.formArticle') }}" title="Envie seu artigo" class="btn btn-sm btn-info mb-0 mx-2">
+                        <i class="fa-regular fa-file-lines"></i>
+                        Envie seu artigo
                     </a>
                 </div>
-
 
                 <div class="nav-item dropdown dropdown-toggle-icon-none nav-search">
                     <a class="nav-link dropdown-toggle" role="button" href="#" id="navSearch" data-bs-toggle="dropdown" aria-expanded="false">

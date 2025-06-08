@@ -30,6 +30,11 @@ class SeetingSeeder extends Seeder
                 'value' => 'https://linktr.ee',
             ],
             [
+                'name' => 'Link LinkedIn',
+                'key' => 'site.link_linkedin',
+                'value' => 'https://www.linkedin.com',
+            ],
+            [
                 'name' => 'Link WhatsApp',
                 'key' => 'site.link_whatsapp',
                 'value' => 'https://wa.me/5586999999999',
@@ -42,12 +47,12 @@ class SeetingSeeder extends Seeder
             [
                 'name' => 'Link grupo WhatsApp',
                 'key' => 'site.grupo_whatsapp',
-                'value' => 'https://chat.whatsapp.com/KAUZT9ucQPvEnhuXIh7YVo',
+                'value' => 'https://chat.whatsapp.com/',
             ],
             [
                 'name' => 'Link Telegram',
                 'key' => 'site.link_telegram',
-                'value' => 'https://t.me/+L5CcwOtONpkzZDdh',
+                'value' => 'https://t.me/',
             ],
             [
                 'name' => 'Link TikTok',

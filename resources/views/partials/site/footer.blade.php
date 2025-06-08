@@ -15,7 +15,7 @@
                 </p>
             </div>
 
-            <div class="col-md-4" id="#newsletter">
+            <div class="col-md-4" id="newsletter">
                 <form method="{{ route('site.home.saveLead') }}" method="POST" class="row row-cols-lg-auto g-2">
                     @csrf
 
