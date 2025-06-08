@@ -13,9 +13,13 @@ class HomeController
 
     public function index(): View
     {
-        $posts = app(PostService::class)->getPosts();
+        $posts         = app(PostService::class)->getPosts();
+        $articlesHome  = app(PostService::class)->getArticlesHome();
 
-        return view('site.home.index', compact('posts'));
+        return view('site.home.index', compact(
+            'posts',
+            'articlesHome',
+        ));
     }
 
     public function saveLead(Request $request): RedirectResponse

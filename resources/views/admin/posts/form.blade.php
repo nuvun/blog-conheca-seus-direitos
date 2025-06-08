@@ -56,6 +56,23 @@
                     <span class="help-block">{{ trans('cruds.post.fields.subtitle_helper') }}</span>
                 </div>
 
+                <div id="div-Article" @class(["form-group d-none", "d-block" => isset($post) && $post->isArticle])>
+                    <div class="form-group">
+                        <label for="attributes[authorArticle]">Nome do autor do artigo</label>
+                        <input class="form-control {{ $errors->has('attributes.authorArticle') ? 'is-invalid' : '' }}"
+                               type="text"
+                               name="attributes[authorArticle]"
+                               id="attributes[authorArticle]"
+                               value="{{ old('attributes.authorArticle', $post->attributes->authorArticle ?? "") }}"
+                        />
+                        @if($errors->has('attributes.authorArticle'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('attributes.authorArticle') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="image_featured">Foto destaque</label>
 
@@ -137,45 +154,6 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('#tags').select2({
-                minimumInputLength: 3,
-                language: {
-                    inputTooShort: function() {
-                        return 'Digite 3 ou mais caracteres...';
-                    },
-                    noResults: function() {
-                        return 'Nenhum resultado encontrado...';
-                    },
-                    searching: function() {
-                        return 'Pesquisando...';
-                    }
-                },
-                ajax: {
-                    url: '{{ route('admin.content-tags.search') }}',
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            search: params.term
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (item) {
-                                return {
-                                    text: item.name,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                    cache: true
-                }
-            });
-        });
-    </script>
-
-    <script>
         let post = @json($post ?? null);
 
         if (post) {
@@ -185,6 +163,18 @@
                     .trigger('change');
             });
         }
+    </script>
+
+    <script>
+        let divArticle = $("#div-Article");
+
+        $(document).on('change', '#categories', function () {
+            let categories = $(this).select2('data').map(function (elem) {
+                return elem.text.trim();
+            });
+
+            divArticle.toggleClass('d-none', !categories.includes("Artigos"));
+        });
     </script>
 
     @include('partials.froalaEditor', [

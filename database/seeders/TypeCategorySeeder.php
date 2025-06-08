@@ -15,7 +15,7 @@ class TypeCategorySeeder extends Seeder
     {
         $rows = [
             ['name' => 'Notícias'],
-            ['name' => 'Blogs'],
+            ['name' => 'Artigos'],
         ];
 
         TypeCategory::upsert($rows, ['name'], ['name']);

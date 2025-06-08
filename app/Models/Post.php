@@ -75,6 +75,8 @@ class Post extends Model implements HasMedia, Viewable
             }
 
             Cache::forget('lastPosts');
+            Cache::forget('getArticlesHome');
+            Cache::forget('getArticles');
         });
 
         static::saved(function($post) {
@@ -100,6 +102,8 @@ class Post extends Model implements HasMedia, Viewable
             }
 
             Cache::forget('lastPosts');
+            Cache::forget('getArticlesHome');
+            Cache::forget('getArticles');
         });
     }
 
@@ -245,7 +249,7 @@ class Post extends Model implements HasMedia, Viewable
         });
     }
 
-    public function isFromArticle(): Attribute
+    public function isArticle(): Attribute
     {
         return Attribute::make(
             get: fn() => $this->categories->contains('name', 'Artigos')

@@ -101,13 +101,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Title -->
                     <div class="mb-4 d-md-flex justify-content-between align-items-center">
                         <h2 class="m-0">
                             <i class="fa-solid fa-file-lines"></i>
                             Artigos
                         </h2>
                     </div>
+
                     <div class="tiny-slider arrow-hover arrow-blur arrow-dark arrow-round">
                         <div class="tiny-slider-inner"
                              data-autoplay="true"
@@ -120,30 +120,38 @@
                              data-items-sm="2"
                              data-items-xs="1">
 
-                            @for($i =0; $i < 4; $i++)
+                            @foreach($articlesHome as $article)
                                 <div class="card">
                                     <div class="position-relative">
-                                        <img class="card-img" src="https://blogzine.webestica.com/assets/images/blog/4by3/07.jpg" alt="Card image">
+                                        <img class="card-img"
+                                             src="{{ $article->featuredImageUrl }}"
+                                             alt="{{ $article->title }}"
+                                             loading="lazy"
+                                        />
                                     </div>
 
                                     <div class="card-body px-0 pt-3">
                                         <h5 class="card-title">
-                                            <a href="" class="btn-link text-reset fw-bold">
-                                                STF na mira: EUA, sanções e soberania
+                                            <a href="{{ $article->url }}" title="{{ $article->title }}" class="btn-link text-reset fw-bold">
+                                                {{ $article->title }}
                                             </a>
                                         </h5>
+
                                         <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
                                             <li class="nav-item">
                                                 <div class="nav-link">
                                                     <div class="d-flex align-items-center position-relative">
-                                                        <div class="avatar avatar-xs">
-                                                            <img class="avatar-img rounded-circle" src="https://blogzine.webestica.com/assets/images/avatar/07.jpg" alt="avatar">
-                                                        </div>
-                                                        <span class="ms-3">
+{{--                                                        <div class="avatar avatar-xs">--}}
+{{--                                                            <img class="avatar-img rounded-circle"--}}
+{{--                                                                 src=""--}}
+{{--                                                                 alt="avatar"--}}
+{{--                                                                 loading="lazy"--}}
+{{--                                                            />--}}
+{{--                                                        </div>--}}
+{{--                                                        <span class="ms-3">--}}
+                                                        <span>
                                                             por
-                                                            <a href="#" class="stretched-link text-reset btn-link">
-                                                                {{ collect(['João', 'Maria', 'Pedro', 'Ana', 'Lucas', 'Fernanda'])->random() }}
-                                                            </a>
+                                                            <em>{{ $article->getValueSchemalessAttributes('authorArticle') }}</em>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -151,7 +159,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 </div>

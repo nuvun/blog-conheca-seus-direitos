@@ -75,8 +75,7 @@ class PostController extends Controller
         $post->save();
 
         if ($request->hasFile('image_featured')) {
-            $fileName          = explode('.', $request->input('image_featured'));
-            $slugMediaFileName = str(current($fileName))->slug()->value() . '.' . end($fileName);
+            $slugMediaFileName = str($request->title)->slug()->value() . '.' . $request->file('image_featured')->getClientOriginalExtension();
 
             $post->addMediaFromRequest('image_featured')
                 ->usingFileName($slugMediaFileName)

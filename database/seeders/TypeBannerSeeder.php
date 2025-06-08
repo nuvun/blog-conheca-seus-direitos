@@ -14,9 +14,7 @@ class TypeBannerSeeder extends Seeder
     public function run(): void
     {
         $rows = [
-            ['name' => 'Full Banner 1'],
-            ['name' => 'Full Banner 2'],
-            ['name' => 'Quadrado 1'],
+            ['name' => 'Quadrado home'],
         ];
 
         TypeBanner::upsert($rows, ['name'], ['name']);

@@ -15498,7 +15498,7 @@ header .navbar-nav .nav-link.active:before {
         padding-bottom: 20px;
     }
     .navbar-brand .navbar-brand-item {
-        height: 22px;
+        height: 72px;
     }
 }
 .navbar .container-fluid .dropdown-fullwidth .dropdown-menu, .navbar .container-sm .dropdown-fullwidth .dropdown-menu, .navbar .container-md .dropdown-fullwidth .dropdown-menu, .navbar .container-lg .dropdown-fullwidth .dropdown-menu, .navbar .container-xl .dropdown-fullwidth .dropdown-menu, .navbar .container-xxl .dropdown-fullwidth .dropdown-menu {

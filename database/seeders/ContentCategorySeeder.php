@@ -65,12 +65,19 @@ class ContentCategorySeeder extends Seeder
                 'description' => 'Direito Tributário é o ramo do Direito Público que regula a arrecadação de tributos pelo Estado e os direitos dos contribuintes.',
                 'status'      => StatusEnum::ACTIVE->value,
             ],
+            [
+                'type_category_id' => 2,
+                'name'        => 'Artigos',
+                'description' => 'Artigos são textos que abordam temas variados, geralmente com uma análise crítica ou informativa sobre determinado assunto.',
+                'status'      => StatusEnum::ACTIVE->value,
+            ],
         ];
 
         foreach ($rows as $row) {
             ContentCategory::updateOrCreate(
                 ['name' => $row['name']],
                 [
+                    'type_category_id' => $row['type_category_id'],
                     'description' => $row['description'],
                     'status'      => $row['status'],
                 ]

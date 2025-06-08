@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\ContentCategory;
 use App\Models\Post;
 use App\Models\Setting;
+use App\Services\PostService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -43,27 +44,6 @@ class AppServiceProvider extends ServiceProvider
                 return Setting::pluck('value', 'key')->toArray();
             });
 
-            // últimas postagens
-            $lastPosts = Cache::rememberForever('lastPosts', function () {
-                return Post::with(['media', 'categories', 'image'])
-                    ->active()
-                    ->validPeriod()
-                    ->where(function ($query) {
-                        $query->whereRaw('NOT JSON_CONTAINS_PATH(attributes, "one", \'$."showable"\')')
-                            ->orWhereRaw('JSON_EXTRACT(attributes, \'$."showable"\') = "false"');
-                    })
-                    ->latest('published_at')
-                    ->take(10)
-                    ->get();
-            });
-
-            $listBlogs = Cache::rememberForever('listBlogs', function () {
-                return ContentCategory::active()
-                    ->isBlog()
-                    ->toBase()
-                    ->get(['id', 'name', 'slug']);
-            });
-
             $listCategoriesNews = Cache::rememberForever('listCategoriesNews', function () {
                 return ContentCategory::active()
                     ->isNews()
@@ -71,12 +51,13 @@ class AppServiceProvider extends ServiceProvider
                     ->get(['id', 'name', 'slug']);
             });
 
+            $postsMostRead = app(PostService::class)->getPostsMostRead();
+
             $view->with([
                 'banners'   => $banners,
                 'settings'  => $settings,
-                'lastPosts' => $lastPosts,
-                'listBlogs' => $listBlogs,
                 'listCategoriesNews' => $listCategoriesNews,
+                'postsMostRead' => $postsMostRead,
             ]);
         });
     }

@@ -25,70 +25,75 @@
 
     <div>
         <h4 class="mt-4 mb-3">Categorias</h4>
-        <!-- Category item -->
-        <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded bg-dark-overlay-4 " style="background-image:url(https://blogzine.webestica.com/assets/images/blog/4by3/01.jpg); background-position: center left; background-size: cover;">
-            <div class="p-3">
-                <a href="#" class="stretched-link btn-link fw-bold text-white h5">
-                    Direto do Consumidor
-                </a>
+        @foreach($listCategoriesNews as $category)
+            <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded bg-dark-overlay-4"
+                 style="background-image:url({{ asset('assets/img/bg-category.jpg') }}); background-position: center left; background-size: cover;"
+            >
+                <div class="p-3">
+                    <a href="{{ route('site.posts.category', $category->slug) }}" title="Postagens - {{ $category->name }}" class="stretched-link btn-link fw-bold text-white h5">
+                        {{ $category->name }}
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded" style="background-image:url(https://blogzine.webestica.com/assets/images/blog/4by3/03.jpg); background-position: center left; background-size: cover;">
-            <div class="bg-dark-overlay-4 p-3">
-                <a href="#" class="stretched-link btn-link fw-bold text-white h5">
-                    Direito do Trabalho
-                </a>
-            </div>
-        </div>
-
-        <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded" style="background-image:url(https://blogzine.webestica.com/assets/images/blog/4by3/04.jpg); background-position: center left; background-size: cover;">
-            <div class="bg-dark-overlay-4 p-3">
-                <a href="#" class="stretched-link btn-link fw-bold text-white h5">
-                    Direito Civil
-                </a>
-            </div>
-        </div>
-
-        <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded" style="background-image:url(https://blogzine.webestica.com/assets/images/blog/4by3/05.jpg); background-position: center left; background-size: cover;">
-            <div class="bg-dark-overlay-4 p-3">
-                <a href="#" class="stretched-link btn-link fw-bold text-white h5">
-                    Direto de Família
-                </a>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <div class="row">
-        <!-- Recent post widget START -->
         <div class="col-12 col-sm-6 col-lg-12">
             <h4 class="mt-4 mb-3">
                 <i class="fas fa-fire"></i>
                 Posts mais vistos
             </h4>
 
-            @for($i = 0; $i < 5; $i++)
+            @foreach($postsMostRead as $post)
                 <div class="card mb-3">
-                <div class="row g-3">
-                    <div class="col-4">
-                        <img class="rounded" src="https://blogzine.webestica.com/assets/images/blog/4by3/thumb/01.jpg" alt="">
-                    </div>
-                    <div class="col-8">
-                        <h6>
-                            <a href="post-single-2.html" class="btn-link stretched-link text-reset fw-bold small">
-                                Deveres parentais, afetos invertidos e dignidade fragilizada.
-                            </a>
-                        </h6>
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <img class="rounded"
+                                 src="{{ $post->featuredImageUrl }}"
+                                 alt="{{ $post->title }}"
+                                 loading="lazy"
+                            />
+                        </div>
+                        <div class="col-8">
+                            <h6>
+                                <a href="{{ $post->url }}" title="{{ $post->title }}" class="btn-link stretched-link text-reset fw-bold small">
+                                    {{ $post->title }}
+                                </a>
+                            </h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endfor
+            @endforeach
         </div>
 
         <div class="col-12 col-sm-6 col-lg-12 my-4">
-            <a href="#" class="d-block card-img-flash">
-                <img src="https://placehold.co/300x500?text=publicidade" alt="">
-            </a>
+            @isset($banners['Quadrado home'])
+                <div class="container">
+                    <div id="carouselExampleFb1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+                        <div class="carousel-inner">
+                            @foreach($banners['Quadrado home'] as $banner)
+                                <div @class(['carousel-item', 'active' => $loop->first])>
+                                    @if($banner->isFormatCode)
+                                        <div class="d-block ad text-center mt-3">
+                                            {!! $banner->code !!}
+                                        </div>
+                                    @else
+                                        <a href="{{ $banner->link }}" title="{{ $banner->name }}" target="_blank" class="d-block card-img-flash ad text-center pt-30 pb-30">
+                                            <img src="{{ $banner->image->getUrl() }}"
+                                                 alt="{{ $banner->name }}"
+                                                 class="w-100"
+                                                 loading="lazy"
+                                            />
+                                        </a>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endisset
+
             <div class="smaller text-end mt-2">publicidade</div>
         </div>
     </div>
