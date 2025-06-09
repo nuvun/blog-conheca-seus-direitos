@@ -18,9 +18,9 @@ class Kernel extends ConsoleKernel
     {
         // Schedule::job(new PrintHomepageJob())->dailyAt('09:00');
 
-        $schedule->call(new ConcursoNewsController())->hourly()->between('7:00', '22:00');
+//        $schedule->call(new ConcursoNewsController())->hourly()->between('7:00', '22:00');
 
-        $schedule->call(new FolhaDirigidaController())->hourly()->between('7:00', '22:00');
+//        $schedule->call(new FolhaDirigidaController())->hourly()->between('7:00', '22:00');
 
 //        $schedule->call(new TvPopController())->hourly()->between('7:00', '22:00');
     }
