@@ -148,7 +148,7 @@ class PostController
         \Mail::send([], [], function ($message) use ($data, $htmlContent) {
             $message->from("contato@nuvun.app", $data['name']);
             $message->replyTo($data['email'], $data['name']);
-            $message->to("italoplus@gmail.com", config('mail.from.name'));
+            $message->to("contato@nuvun.app", config('mail.from.name'));
             $message->subject('Envio de artigo - ' . config('app.name'));
             $message->html($htmlContent);
 
