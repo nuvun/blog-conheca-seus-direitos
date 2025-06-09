@@ -131,7 +131,7 @@ class User extends Authenticatable implements HasMedia
 
     public function getIsAdminAttribute()
     {
-        return $this->roles->whereIn('id', [1, 2])->isNotEmpty(); // Roles 'Admin' e 'Editor'
+        return $this->roles->whereIn('id', [1, 3])->isNotEmpty(); // Roles 'Admin' e 'Editor'
     }
 
     public function slug(): Attribute
