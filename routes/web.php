@@ -31,16 +31,6 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function 
     }
 });
 
-Route::get('/resize-image', function () {
-    $timthumbPath = public_path('timthumb.php');
-
-    ob_start();
-    include $timthumbPath;
-    $content = ob_get_clean();
-
-    return new \Symfony\Component\HttpFoundation\BinaryFileResponse($content);
-});
-
 Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
 
     Route::controller(\App\Http\Controllers\Site\HomeController::class)->group(function () {
@@ -93,6 +83,24 @@ Route::group(['namespace' => 'Crawler', 'as' => 'crawler.'], function () {
     Route::get('crawler/entretenimento/tvPop', TvPopController::class)
         ->name('entretenimento.tvPop');
 
+});
+
+Route::group(['namespace' => 'Chat', 'as' => 'chat.'], function () {
+
+    Route::controller(\App\Http\Controllers\Chat\HomeController::class)->group(function () {
+        Route::get('/chat', 'index')->name('home.index');
+    });
+
+});
+
+Route::get('/resize-image', function () {
+    $timthumbPath = public_path('timthumb.php');
+
+    ob_start();
+    include $timthumbPath;
+    $content = ob_get_clean();
+
+    return new \Symfony\Component\HttpFoundation\BinaryFileResponse($content);
 });
 
 Route::group(['prefix' => 'froala-upload', 'as' => 'froala.'], function () {
