@@ -64,19 +64,9 @@
                         </div>
 
                         <div class="position-relative">
-                            <div class="input-group">
-                                    <textarea
-                                        name="case"
-                                        id="case"
-                                        class="form-control message-input"
-                                        placeholder="Conte sobre o seu caso"
-                                        required
-                                    ></textarea>
 
-                                <button class="btn send-btn ms-2" type="button">
-                                    <i class="fas fa-paper-plane text-white"></i>
-                                </button>
-                            </div>
+                            <livewire:chat.messages />
+
                         </div>
                     </div>
                 </div>
@@ -84,3 +74,5 @@
         </div>
     </section>
 @endsection
+
+

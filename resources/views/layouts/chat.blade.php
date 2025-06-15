@@ -94,7 +94,7 @@
             .message-input {
                 border-radius: 25px;
                 border: 2px solid #e9ecef;
-                padding: 40px 20px;
+                padding: 20px 20px;
                 font-size: 1rem;
                 transition: all 0.3s ease;
             }
@@ -164,6 +164,79 @@
                 0% { transform: scale(1); }
                 50% { transform: scale(1.02); }
                 100% { transform: scale(1); }
+            }
+
+            .chat-area {
+                background: white;
+                border-radius: 20px 20px 0 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                max-height: 400px;
+                overflow-y: auto;
+                margin-top: 1rem;
+            }
+
+            .chat-messages {
+                padding: 1rem;
+                max-height: 300px;
+                overflow-y: auto;
+            }
+
+            .message-item {
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .message-item.user {
+                flex-direction: row-reverse;
+            }
+
+            .message-item.lawyer {
+                flex-direction: row;
+            }
+
+            .message-content {
+                background: rgba(238, 239, 241, 0.93);
+                padding: 10px 15px;
+                border-radius: 15px;
+                max-width: 80%;
+                word-break: break-word;
+                text-align: left;
+            }
+
+            .message-item.user .message-content {
+                background: #d1e7dd;
+                color: #0f5132;
+            }
+
+            .chat-input-area {
+                padding: 1rem .75rem;
+                border-top: 1px solid #e9ecef;
+                background: #f8f9fa;
+                border-radius: 0 0 20px 20px;
+            }
+
+            .typing-indicator {
+                margin: 10px 0 0 10px;
+                font-size: 1.5em;
+                color: #888;
+                display: flex;
+                align-items: center;
+            }
+            .typing-indicator .dot {
+                animation: blink 1s infinite;
+                margin-right: 2px;
+            }
+            .typing-indicator .dot:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .typing-indicator .dot:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            @keyframes blink {
+                0%, 80%, 100% { opacity: 0; }
+                40% { opacity: 1; }
             }
         </style>
 
