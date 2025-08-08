@@ -46,7 +46,7 @@ class ExtractUserDataFromMessagesJob implements ShouldQueue, ShouldBeUnique
             );
 
             $response = Prism::structured()
-                ->using(Provider::OpenAI, 'o4-mini')
+                ->using(Provider::OpenAI, 'gpt-5-mini-2025-08-07')
                 ->withSchema($schema)
                 ->withSystemPrompt(view('chat.prompts.extract-user-data'))
                 ->withMessages($userMessageObjects)
