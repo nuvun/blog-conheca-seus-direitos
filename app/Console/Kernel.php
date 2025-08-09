@@ -2,10 +2,8 @@
 
 namespace App\Console;
 
-use App\Http\Controllers\Crawler\Concursos\ConcursoNewsController;
-use App\Http\Controllers\Crawler\Concursos\FolhaDirigidaController;
-use App\Http\Controllers\Crawler\Novelas\TvPopController;
-use App\Jobs\PrintHomepageJob;
+use App\Jobs\SendCaseToNuvunJob;
+use App\Models\ChatUserData;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,13 +14,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // Schedule::job(new PrintHomepageJob())->dailyAt('09:00');
+         Schedule::call(function () {
+             $chatsUserData = ChatUserData::query()
+                 ->withWhereHas('chatMessages')
+                 ->where('sent_to_nuvun', false)
+                 ->orderByDesc('id')
+                 ->get();
 
-//        $schedule->call(new ConcursoNewsController())->hourly()->between('7:00', '22:00');
+             foreach ($chatsUserData as $chatUserData) {
+                 SendCaseToNuvunJob::dispatch($chatUserData);
+             }
 
-//        $schedule->call(new FolhaDirigidaController())->hourly()->between('7:00', '22:00');
-
-//        $schedule->call(new TvPopController())->hourly()->between('7:00', '22:00');
+        })->everySixHours();
     }
 
     /**

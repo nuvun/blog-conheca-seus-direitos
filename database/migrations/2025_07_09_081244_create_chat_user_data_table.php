@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('phone_number')->nullable();
             $table->string('city')->nullable();
             $table->string('area_of_law')->nullable();
+            $table->boolean('sent_to_nuvun')->default(false);
             $table->timestamps();
         });
     }

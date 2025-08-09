@@ -16,7 +16,8 @@ class ChatController extends Controller
             $chatUserData = ChatUserData::query()
                 ->with(['chatMessages'])
                 ->orderByDesc('id')
-                ->get();
+                ->paginate()
+                ->withQueryString();
 
             return response()->json([
                 'message' => 'Chat user data retrieved successfully.',

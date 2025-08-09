@@ -14,6 +14,7 @@ class ChatUserData extends Model
         'phone_number',
         'city',
         'area_of_law',
+        'sent_to_nuvun',
     ];
 
     public function chatMessages(): HasMany

@@ -46,4 +46,9 @@ return [
         'api_key_youtube' => env('GOOGLE_API_KEY_YOUTUBE'),
     ],
 
+    'nuvun' => [
+        'base_url' => env('NUVUN_BASE_URL', 'https://nuvun.online'),
+        'api_key'  => env('NUVUN_API_KEY'),
+    ]
+
 ];
