@@ -120,6 +120,18 @@
                             Conheça a <b>Nuvun</b>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ route('chat.home.index') }}"
+                           title="Tire suas dúvidas sobre casos jurídicos com nossa IA"
+                           target="_blank"
+                           style="text-transform: initial"
+                        >
+                            Consulta Jurídica
+                            <i class="fa-solid fa-robot fs-6 ms-1"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
