@@ -57,6 +57,8 @@
 
         @include('partials.cookie-consent')
 
+        @include('partials.site.floatButtonLegalConsultancy')
+
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v22.0"></script>
     </body>
