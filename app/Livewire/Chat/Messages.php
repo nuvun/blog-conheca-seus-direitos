@@ -92,7 +92,7 @@ class Messages extends Component
             $this->messages
         ));
 
-        if ($userMessagesCount >= 5) {
+        if ($userMessagesCount >= 3) {
             $allUserMessages = array_filter(
                 $this->messages,
                 fn($msg) => $msg['from'] === 'user'
