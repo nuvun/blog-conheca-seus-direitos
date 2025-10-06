@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-         Schedule::call(function () {
+        $schedule->call(function () {
              $chatsUserData = ChatUserData::query()
                  ->withWhereHas('chatMessages')
                  ->where('sent_to_nuvun', false)
