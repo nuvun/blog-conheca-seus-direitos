@@ -50,7 +50,7 @@ class Messages extends Component
         }
 
         $response = Prism::text()
-            ->using(Provider::OpenAI, 'gpt-5-mini-2025-08-07')
+            ->using(Provider::OpenAI, 'gpt-4.1-2025-04-14')
             ->withSystemPrompt(view('chat.prompts.lawyer-assistant'))
             ->withMessages($conversation)
             ->asText();
