@@ -26,7 +26,7 @@ class SendCaseToNuvunJob implements ShouldQueue, ShouldBeUnique
                 'x-api-key' => config('services.nuvun.api_key'),
             ])
             ->asJson()
-            ->post('/api/v1/data/cases', $this->chatUserData)
+            ->post('/api/v1/data/cases/store', $this->chatUserData)
             ->throw();
 
         if ($response->successful()) {
