@@ -49,6 +49,7 @@
 
         <div class="back-top"><i class="bi bi-arrow-up-short"></i></div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>

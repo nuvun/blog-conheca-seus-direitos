@@ -35,15 +35,6 @@
                         {!! $post->content !!}
                     </article>
 
-                    <!-- CTA Consulta Jurídica -->
-                    <div class="text-center my-5 p-4 bg-light rounded">
-                        <h4 class="mb-3">Precisa de orientação jurídica?</h4>
-                        <p class="text-secondary mb-4">Conecte-se com advogados especializados e tire suas dúvidas</p>
-                        <a href="{{ route('chat.home.index') }}" class="btn btn-primary btn-lg">
-                            <i class="fas fa-robot me-2"></i>Consulta Jurídica Gratuita
-                        </a>
-                    </div>
-
                     <div class="row g-0 mt-5 mx-0 border-top border-bottom">
                         @foreach($relatedPosts->slice(0, 2) as $relatedPost)
                             <div class="col-sm-6 py-3 py-md-4 @if(($loop->iteration == 1)) text-sm-end @endif">
@@ -71,9 +62,84 @@
 
 @section('scripts')
     <script>
-        window.onload = (event) => {
-            $('.contentPost p a').each(function() {
-                let href = $(this).attr("href");
+        document.addEventListener('DOMContentLoaded', function() {
+            // CTAs variações
+            const ctaVariations = [
+                {
+                    title: 'Precisa de orientação jurídica?',
+                    description: 'Conecte-se com advogados especializados e tire suas dúvidas',
+                    buttonText: 'Consulta Jurídica Gratuita',
+                    icon: 'fa-robot'
+                },
+                {
+                    title: 'Tem dúvidas sobre seus direitos?',
+                    description: 'Fale agora com advogados especializados',
+                    buttonText: 'Falar com Advogado',
+                    icon: 'fa-balance-scale'
+                },
+                {
+                    title: 'Está passando por situação similar?',
+                    description: 'Advogados prontos para te ajudar de forma rápida e segura',
+                    buttonText: 'Receber Orientação',
+                    icon: 'fa-hands-helping'
+                },
+                {
+                    title: 'Não sabe como proceder?',
+                    description: 'Tire suas dúvidas com profissionais qualificados',
+                    buttonText: 'Consultar Especialista',
+                    icon: 'fa-user-tie'
+                }
+            ];
+
+            // Função para criar HTML do CTA
+            function createCTA(variation) {
+                return `
+                    <div class="text-center my-4 p-4 bg-light rounded cta-inserted">
+                        <h5 class="mb-3">${variation.title}</h5>
+                        <p class="text-secondary mb-3 small">${variation.description}</p>
+                        <a href="{{ route('chat.home.index') }}" class="btn btn-primary">
+                            <i class="fas ${variation.icon} me-2"></i>${variation.buttonText}
+                        </a>
+                    </div>
+                `;
+            }
+
+            // Inserir CTAs ao longo do texto
+            const paragraphs = jQuery('.contentPost > p');
+            const totalParagraphs = paragraphs.length;
+
+            if (totalParagraphs >= 4) {
+                // Define posições estratégicas (após 25%, 50% e 75% do conteúdo)
+                const positions = [
+                    Math.floor(totalParagraphs * 0.25),
+                    Math.floor(totalParagraphs * 0.50),
+                    Math.floor(totalParagraphs * 0.75)
+                ];
+
+                positions.forEach((position, index) => {
+                    if (paragraphs.eq(position).length) {
+                        const ctaHtml = createCTA(ctaVariations[index % ctaVariations.length]);
+                        paragraphs.eq(position).after(ctaHtml);
+                    }
+                });
+            } else if (totalParagraphs >= 2) {
+                // Para textos menores, insere apenas no meio
+                const middlePosition = Math.floor(totalParagraphs / 2);
+                if (paragraphs.eq(middlePosition).length) {
+                    const ctaHtml = createCTA(ctaVariations[0]);
+                    paragraphs.eq(middlePosition).after(ctaHtml);
+                }
+            }
+
+            // Adiciona CTA final após o último parágrafo
+            if (paragraphs.length > 0) {
+                const finalCta = createCTA(ctaVariations[3]);
+                paragraphs.last().after(finalCta);
+            }
+
+            // Processamento de links para áudio/PDF
+            jQuery('.contentPost p a').each(function() {
+                let href = jQuery(this).attr("href");
                 let replacement;
 
                 switch (true) {
@@ -87,10 +153,10 @@
                 }
 
                 if (replacement) {
-                    $(this).replaceWith(replacement);
+                    jQuery(this).replaceWith(replacement);
                 }
             });
-        };
+        });
     </script>
 
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=664f832f3a56e900196c14e5&product=inline-share-buttons&source=platform" async="async"></script>
