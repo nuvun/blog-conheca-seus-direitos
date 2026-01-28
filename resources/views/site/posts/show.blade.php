@@ -33,19 +33,16 @@
 
                     <article class="contentPost">
                         {!! $post->content !!}
-
-                        <div class="mt-3">
-                            <div class="comment-box-wrap post-comment">
-                                <h4 class="comment-box-title">Deixe sua opinião:</h4>
-                            </div>
-
-                            <div class='fb-comments' data-width='100%'
-                                 data-href="{{ url()->current() }}"
-                                 data-numposts='50'
-                            >
-                            </div>
-                        </div>
                     </article>
+
+                    <!-- CTA Consulta Jurídica -->
+                    <div class="text-center my-5 p-4 bg-light rounded">
+                        <h4 class="mb-3">Precisa de orientação jurídica?</h4>
+                        <p class="text-secondary mb-4">Conecte-se com advogados especializados e tire suas dúvidas</p>
+                        <a href="{{ route('chat.home.index') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-robot me-2"></i>Consulta Jurídica Gratuita
+                        </a>
+                    </div>
 
                     <div class="row g-0 mt-5 mx-0 border-top border-bottom">
                         @foreach($relatedPosts->slice(0, 2) as $relatedPost)
